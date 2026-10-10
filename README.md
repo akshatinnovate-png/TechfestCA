@@ -15,6 +15,13 @@ To run locally, open `index.html` directly, or serve the folder:
 python3 -m http.server 8000
 ```
 
+## Also in this repo
+
+**[`3d/`](3d/) — ASCENT PROTOCOL**, a scroll-driven real-time 3D experience built with WebGL
+and Three.js: five chapters, interactive event bodies, an instanced spire that assembles as
+you scroll, and a particle wordmark finale.
+Live at **https://akshatinnovate-png.github.io/TechfestCA/3d/**
+
 ## What's in it
 
 - **Custom WebGL backdrop** — a hand-written GLSL fragment shader (domain-warped FBM aether clouds,

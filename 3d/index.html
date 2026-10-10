@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#03050b" />
+<title>ASCENT PROTOCOL — Techfest 3D</title>
+<meta name="description" content="A scroll-driven 3D journey through Techfest: ignition, the lattice, the arena, the spire and the transmission. Built with WebGL." />
+<meta property="og:title" content="ASCENT PROTOCOL — Techfest 3D" />
+<meta property="og:description" content="Scroll to fly through five chapters of a real-time 3D world." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500..900&family=Chakra+Petch:wght@300;400;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/app.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2303050b'/%3E%3Cpath d='M32 8l21 12v24L32 56 11 44V20z' fill='none' stroke='%2300e5ff' stroke-width='4'/%3E%3C/svg%3E" />
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ───────── LOADER ───────── -->
+<div class="load" id="load">
+  <div class="load__box">
+    <div class="load__mark" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <polygon class="load__hex" points="60,8 104,34 104,86 60,112 16,86 16,34" />
+        <polygon class="load__hex load__hex--in" points="60,30 85,45 85,75 60,90 35,75 35,45" />
+      </svg>
+    </div>
+    <h1 class="load__title">ASCENT PROTOCOL</h1>
+    <p class="load__sub">IIT BOMBAY&rsquo;S TECHFEST &middot; REAL-TIME 3D</p>
+    <div class="load__rail"><i id="loadBar"></i></div>
+    <p class="load__pct"><span id="loadPct">0</span>% &middot; <span id="loadMsg">compiling shaders</span></p>
+    <button class="load__btn" id="loadBtn" type="button" hidden>ENTER</button>
+  </div>
+</div>
+
+<!-- ───────── WEBGL FALLBACK ───────── -->
+<noscript><div class="fallback"><h2>JavaScript required</h2><p>This experience renders in real time with WebGL.</p></div></noscript>
+<div class="fallback" id="fallback" hidden>
+  <h2>WebGL unavailable</h2>
+  <p>This experience needs WebGL. Try a current Chrome, Edge, Firefox or Safari with hardware acceleration enabled.</p>
+</div>
+
+<!-- ───────── 3D CANVAS ───────── -->
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="grade" aria-hidden="true"></div>
+<div class="scan" aria-hidden="true"></div>
+
+<!-- ───────── FIXED UI ───────── -->
+<header class="hud" id="hud">
+  <a class="hud__brand" href="../">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6l23 13v26L32 58 9 45V19z" /></svg>
+    <span><b>TECHFEST</b><i>ASCENT PROTOCOL</i></span>
+  </a>
+  <nav class="hud__chapters" id="chapterNav" aria-label="Chapters"></nav>
+  <div class="hud__meta">
+    <span class="hud__fps" id="fps">-- FPS</span>
+    <button class="hud__btn" id="autoBtn" type="button" aria-pressed="false" title="Auto-fly through the scene">AUTO-FLY</button>
+  </div>
+</header>
+
+<div class="progress" aria-hidden="true">
+  <div class="progress__rail"><i id="progFill"></i></div>
+  <span class="progress__pct" id="progPct">00</span>
+</div>
+
+<div class="hint" id="hint" aria-hidden="true"><i></i>SCROLL TO FLY</div>
+
+<!-- ───────── CHAPTER OVERLAYS ───────── -->
+<main class="chapters" id="chapters">
+
+  <section class="ch" data-ch="0">
+    <p class="ch__kicker"><i></i>CHAPTER 01 &mdash; IGNITION</p>
+    <h2 class="ch__title">THE CORE<br /><em>AWAKENS</em></h2>
+    <p class="ch__body">Thirty editions of ideas compressed into a single contained reaction. Everything that follows radiates from here.</p>
+    <p class="ch__note">DRAG TO ORBIT &middot; SCROLL TO ADVANCE</p>
+  </section>
+
+  <section class="ch ch--right" data-ch="1">
+    <p class="ch__kicker"><i></i>CHAPTER 02 &mdash; THE LATTICE</p>
+    <h2 class="ch__title">BUILT<br /><em>FROM LIGHT</em></h2>
+    <p class="ch__body">A corridor of resonance rings carries the signal outward. Every ring is an institution, a team, a project that answered the call.</p>
+    <dl class="ch__stats">
+      <div><dt>2,400+</dt><dd>COLLEGES</dd></div>
+      <div><dt>175K</dt><dd>FOOTFALL</dd></div>
+      <div><dt>42</dt><dd>COUNTRIES</dd></div>
+    </dl>
+  </section>
+
+  <section class="ch ch--top" data-ch="2">
+    <p class="ch__kicker"><i></i>CHAPTER 03 &mdash; THE ARENA</p>
+    <h2 class="ch__title">SIX CONTESTS<br /><em>ONE FLOOR</em></h2>
+    <p class="ch__body">Hover a body to scan it. Click to lock on.</p>
+  </section>
+
+  <section class="ch" data-ch="3">
+    <p class="ch__kicker"><i></i>CHAPTER 04 &mdash; THE SPIRE</p>
+    <h2 class="ch__title">IT<br /><em>ASSEMBLES</em></h2>
+    <p class="ch__body">Two thousand parts find their place as you climb. Nobody builds the spire alone &mdash; that is rather the point.</p>
+  </section>
+
+  <section class="ch ch--bottom" data-ch="4">
+    <p class="ch__kicker"><i></i>CHAPTER 05 &mdash; TRANSMISSION</p>
+    <h2 class="ch__title">SEE YOU<br /><em>IN DECEMBER</em></h2>
+    <p class="ch__body">16&ndash;18 December &middot; IIT Bombay, Powai</p>
+    <div class="ch__cta">
+      <a class="btn btn--solid" href="../#uplink">JOIN THE PROGRAM</a>
+      <a class="btn" href="../">BACK TO MAIN SITE</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ───────── ARENA LABELS + PANEL ───────── -->
+<div class="labels" id="labels" aria-hidden="true"></div>
+
+<aside class="panel" id="panel" aria-live="polite">
+  <button class="panel__x" id="panelX" type="button" aria-label="Close">&times;</button>
+  <span class="panel__tag" id="panelTag"></span>
+  <h3 class="panel__title" id="panelTitle"></h3>
+  <p class="panel__body" id="panelBody"></p>
+  <dl class="panel__specs" id="panelSpecs"></dl>
+</aside>
+
+<!-- the scroll track that drives the camera -->
+<div class="track" id="track" aria-hidden="true"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
