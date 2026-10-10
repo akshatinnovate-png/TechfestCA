@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0a10" />
+<title>Techfest · IIT Bombay — 30th Edition (concept landing page)</title>
+<meta name="description" content="An unofficial concept redesign of the Techfest IIT Bombay landing page: one clear funnel from arrival to registration, with live deadlines and a searchable event index." />
+<meta property="og:title" content="Techfest IIT Bombay — concept landing page" />
+<meta property="og:description" content="An Aetherial Renaissance, reorganised around what a visitor actually came to do." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/app.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a10'/%3E%3Cpath d='M14 18h36v8H36v22h-8V26H14z' fill='%23e0b15c'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+<div class="spot" id="spot" aria-hidden="true"></div>
+<div class="vign" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<a class="skip" href="#explore">Skip to events</a>
+
+<div class="concept-flag" role="note">
+  <b>Concept</b> — an unofficial redesign study of techfest.org. Not affiliated with Techfest; figures are illustrative.
+</div>
+
+<!-- ───────────── NAV ───────────── -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 16h40v9H37v26h-10V25H12z"/></svg>
+    <span><b>TECHFEST</b><i>IIT BOMBAY · 30<sup>TH</sup></i></span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#explore">Events</a>
+    <a href="#ignite">Ignite</a>
+    <a href="#scale">About</a>
+    <a href="#ambassador">Ambassadors</a>
+    <a href="#faq">Visit</a>
+  </nav>
+  <div class="nav__act">
+    <a class="lnk" href="#explore">Browse all</a>
+    <a class="pill" href="#register">Register <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 6l6 6-6 6"/></svg></a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a href="#explore">Events</a><a href="#ignite">Ignite</a><a href="#scale">About</a>
+  <a href="#ambassador">Ambassadors</a><a href="#faq">Visit</a>
+  <a class="pill pill--wide" href="#register">Register</a>
+</div>
+
+<main id="top">
+
+<!-- ───────────── HERO ───────────── -->
+<section class="hero">
+  <canvas class="hero__aether" id="aether" aria-hidden="true"></canvas>
+  <div class="hero__rays" aria-hidden="true"></div>
+
+  <div class="hero__in">
+    <p class="kick" data-rv><span class="kick__dot"></span>ASIA&rsquo;S LARGEST SCIENCE &amp; TECHNOLOGY FESTIVAL &middot; SINCE 1998</p>
+
+    <h1 class="hero__ttl" data-rv>
+      <span class="hero__ttl-a">TECHFEST</span>
+      <span class="hero__ttl-b">AN AETHERIAL RENAISSANCE</span>
+    </h1>
+
+    <p class="hero__sub" data-rv>
+      Three days, sixty-plus events and a campus that stops behaving like a campus.
+      <b>16&ndash;18 December</b> &middot; IIT Bombay, Powai.
+    </p>
+
+    <div class="count" id="count" data-rv aria-label="Countdown to Techfest">
+      <div><b id="cD">--</b><span>DAYS</span></div><i>:</i>
+      <div><b id="cH">--</b><span>HRS</span></div><i>:</i>
+      <div><b id="cM">--</b><span>MIN</span></div><i>:</i>
+      <div><b id="cS">--</b><span>SEC</span></div>
+    </div>
+
+    <div class="hero__cta" data-rv>
+      <a class="btn btn--gold" href="#register"><span>Register free</span></a>
+      <a class="btn" href="#explore"><span>Find your event</span></a>
+    </div>
+
+    <dl class="hero__stats" data-rv>
+      <div><dt data-n="30" data-suf="th">0</dt><dd>edition</dd></div>
+      <div><dt data-n="175" data-suf="K+">0</dt><dd>footfall</dd></div>
+      <div><dt data-n="2400" data-suf="+">0</dt><dd>colleges</dd></div>
+      <div><dt data-n="60" data-suf="+">0</dt><dd>events</dd></div>
+    </dl>
+  </div>
+
+  <div class="hero__cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+</section>
+
+<!-- ───────────── DEADLINE TICKER ───────────── -->
+<div class="tick" aria-label="Upcoming deadlines">
+  <span class="tick__tag">CLOSING SOON</span>
+  <div class="tick__vp"><div class="tick__track" id="tickTrack"></div></div>
+</div>
+
+<!-- ───────────── THREE DOORS ───────────── -->
+<section class="sec doors" id="doors">
+  <header class="sec__h" data-rv>
+    <p class="sec__n">01 / START HERE</p>
+    <h2 class="sec__t">What did you come for?</h2>
+    <p class="sec__l">Techfest is four festivals wearing one name. Pick the one you actually want and the rest gets out of your way.</p>
+  </header>
+
+  <div class="doors__grid" id="doorsGrid">
+    <button class="door" data-door="compete" data-rv>
+      <span class="door__i" aria-hidden="true">
+        <svg viewBox="0 0 48 48"><path d="M10 6h28v12a14 14 0 0 1-28 0z"/><path d="M38 9h6v5a8 8 0 0 1-8 8M10 9H4v5a8 8 0 0 0 8 8"/><path d="M24 32v8M16 42h16"/></svg>
+      </span>
+      <h3>I want to <em>compete</em></h3>
+      <p>Robotics leagues, autonomous racing, hackathons and case challenges — with prize pools and a live audience.</p>
+      <span class="door__go">See 6 competitions &rarr;</span>
+    </button>
+
+    <button class="door" data-door="learn" data-rv>
+      <span class="door__i" aria-hidden="true">
+        <svg viewBox="0 0 48 48"><path d="M4 14 24 6l20 8-20 8z"/><path d="M12 18v12c0 4 6 7 12 7s12-3 12-7V18"/><path d="M44 14v12"/></svg>
+      </span>
+      <h3>I want to <em>learn</em></h3>
+      <p>Hands-on workshops in drones, embedded systems, ML and fabrication. You leave with the hardware you built.</p>
+      <span class="door__go">See workshops &rarr;</span>
+    </button>
+
+    <button class="door" data-door="witness" data-rv>
+      <span class="door__i" aria-hidden="true">
+        <svg viewBox="0 0 48 48"><path d="M4 24s7-12 20-12 20 12 20 12-7 12-20 12S4 24 4 24z"/><circle cx="24" cy="24" r="6"/></svg>
+      </span>
+      <h3>I just want to <em>witness it</em></h3>
+      <p>Lectures from people who changed their field, an exhibition floor of things you have only seen in press photos, and the nights.</p>
+      <span class="door__go">See Ignite &amp; exhibitions &rarr;</span>
+    </button>
+  </div>
+</section>
+
+<!-- ───────────── EVENT EXPLORER ───────────── -->
+<section class="sec" id="explore">
+  <header class="sec__h" data-rv>
+    <p class="sec__n">02 / THE INDEX</p>
+    <h2 class="sec__t">Every event, in one place</h2>
+    <p class="sec__l">Filter by what you build, search by name, and see the deadline before you click. No hunting across four menus.</p>
+  </header>
+
+  <div class="tools" data-rv>
+    <div class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+      <input type="search" id="q" placeholder="Search events, e.g. &ldquo;robot&rdquo; or &ldquo;drone&rdquo;" aria-label="Search events" autocomplete="off" />
+      <button type="button" id="qClear" aria-label="Clear search" hidden>&times;</button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+  </div>
+
+  <p class="count-line" id="countLine" aria-live="polite"></p>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>Nothing matches that. <button type="button" id="reset">Clear filters</button></p>
+</section>
+
+<!-- ───────────── IGNITE ───────────── -->
+<section class="sec sec--ignite" id="ignite">
+  <header class="sec__h" data-rv>
+    <p class="sec__n">03 / IGNITE</p>
+    <h2 class="sec__t">The lecture series</h2>
+    <p class="sec__l">Techfest has put Nobel laureates, astronauts and the odd person who rewired an entire industry on the same stage. Free seating. Arrive early.</p>
+  </header>
+  <div class="rail" id="rail" tabindex="0" aria-label="Speaker line-up, scroll horizontally"></div>
+  <p class="rail__hint" aria-hidden="true">Drag, scroll or use &larr; &rarr;</p>
+</section>
+
+<!-- ───────────── SCALE ───────────── -->
+<section class="sec sec--scale" id="scale">
+  <div class="scale">
+    <div class="scale__copy" data-rv>
+      <p class="sec__n">04 / SCALE</p>
+      <h2 class="sec__t">Thirty years of<br /><em>building in public</em></h2>
+      <p class="sec__l">Started by students in 1998 with competitions, lectures, workshops and an exhibition floor. The format never really changed. The size did.</p>
+      <ul class="scale__list">
+        <li><b>1998</b><span>First edition. Four formats that still define the festival.</span></li>
+        <li><b>2008</b><span>International teams arrive; robotics becomes the headline act.</span></li>
+        <li><b>2018</b><span>Six figures of footfall across three days.</span></li>
+        <li><b>2026</b><span>30th edition — <i>An Aetherial Renaissance</i>.</span></li>
+      </ul>
+    </div>
+    <dl class="scale__nums" data-rv>
+      <div><dt data-n="175" data-suf="K+">0</dt><dd>visitors over three days</dd></div>
+      <div><dt data-n="2400" data-suf="+">0</dt><dd>colleges represented</dd></div>
+      <div><dt data-n="42" data-suf="">0</dt><dd>countries in the international rounds</dd></div>
+      <div><dt data-n="1.2" data-suf=" Cr" data-dec="1">0</dt><dd>illustrative prize pool across events</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ───────────── CA PROGRAM ───────────── -->
+<section class="sec" id="ambassador">
+  <div class="band" data-rv>
+    <div class="band__l">
+      <p class="sec__n">05 / CAMPUS AMBASSADORS</p>
+      <h2 class="sec__t">Run Techfest<br />from your campus</h2>
+      <p class="sec__l">Bring your college in, build a team, and get certified for it. Top ambassadors get accommodation, merchandise and a direct line to the core team.</p>
+      <a class="btn btn--gold" href="#register"><span>Apply to the CA programme</span></a>
+    </div>
+    <ul class="band__r">
+      <li><b>Certificate</b><span>plus a letter of recommendation</span></li>
+      <li><b>Merch drop</b><span>ambassador-only kit</span></li>
+      <li><b>Stay covered</b><span>for top performers</span></li>
+      <li><b>Leaderboard</b><span>cash rewards and referrals</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ───────────── REGISTER ───────────── -->
+<section class="sec sec--reg" id="register">
+  <div class="reg" data-rv>
+    <h2 class="reg__t">One account.<br /><em>Every event.</em></h2>
+    <p class="reg__l">Register once, then add events to your schedule as you go. Deadlines land in your inbox instead of your luck.</p>
+    <form class="reg__form" id="regForm" novalidate>
+      <label class="sr" for="regMail">Email address</label>
+      <input id="regMail" name="email" type="email" placeholder="you@college.edu" required />
+      <button class="btn btn--gold" type="submit"><span id="regBtn">Create account</span></button>
+    </form>
+    <p class="reg__note" id="regNote">Concept demo — this form validates and resets, it does not send anything.</p>
+  </div>
+</section>
+
+<!-- ───────────── FAQ ───────────── -->
+<section class="sec" id="faq">
+  <header class="sec__h" data-rv>
+    <p class="sec__n">06 / VISITING</p>
+    <h2 class="sec__t">Practical things</h2>
+  </header>
+  <div class="faq" id="faqList"></div>
+</section>
+
+<!-- ───────────── DESIGN NOTES ───────────── -->
+<section class="sec sec--notes" id="notes">
+  <header class="sec__h" data-rv>
+    <p class="sec__n">07 / RATIONALE</p>
+    <h2 class="sec__t">Why this layout</h2>
+    <p class="sec__l">The brief asked for ideation, so here is the reasoning rather than just the pixels.</p>
+  </header>
+  <div class="notes" id="notesGrid"></div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 16h40v9H37v26h-10V25H12z"/></svg>
+      <p>A concept redesign of the Techfest IIT Bombay landing page, built as a design study. Not affiliated with or endorsed by Techfest.</p>
+    </div>
+    <nav class="foot__cols" aria-label="Footer">
+      <div><h4>Events</h4><a href="#explore">Competitions</a><a href="#explore">Workshops</a><a href="#ignite">Ignite</a><a href="#explore">Exhibitions</a></div>
+      <div><h4>Take part</h4><a href="#register">Register</a><a href="#ambassador">Ambassadors</a><a href="#faq">Accommodation</a><a href="#faq">Travel</a></div>
+      <div><h4>More</h4><a href="../">Cyborg build</a><a href="../3d/">3D build</a><a href="../parallax/">Parallax build</a></div>
+    </nav>
+  </div>
+  <p class="foot__word" aria-hidden="true">TECHFEST</p>
+  <div class="foot__bar">
+    <span>Concept study · <span id="yr">2026</span></span>
+    <span>Designed &amp; built by Akshat</span>
+  </div>
+</footer>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>

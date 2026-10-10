@@ -27,6 +27,11 @@ six layers of atmosphere moving at different speeds, all scenery generated in co
 image assets and no dependencies.
 Live at **https://akshatinnovate-png.github.io/TechfestCA/parallax/**
 
+**[`landing/`](landing/) — Techfest concept landing page**, an unofficial redesign study
+of techfest.org: one funnel from arrival to registration, a searchable event index, live
+deadlines, and a written rationale for each decision. No 3D.
+Live at **https://akshatinnovate-png.github.io/TechfestCA/landing/**
+
 ## What's in it
 
 - **Custom WebGL backdrop** — a hand-written GLSL fragment shader (domain-warped FBM aether clouds,
