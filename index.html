@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aether">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#04060c" />
+<title>CYBORG ASCENSION — IIT Bombay's Techfest · 30th Edition</title>
+<meta name="description" content="An Aetherial Renaissance. Step into the machine-soul: a cyborg-themed experience for IIT Bombay's Techfest, Asia's largest science and technology festival." />
+<meta property="og:title" content="CYBORG ASCENSION — Techfest 30th Edition" />
+<meta property="og:description" content="An Aetherial Renaissance. Where flesh remembers and circuitry dreams." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Chakra+Petch:wght@300;400;500;600;700&family=Cinzel:wght@400..900&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/core.css" />
+<link rel="stylesheet" href="assets/css/components.css" />
+<link rel="stylesheet" href="assets/css/sections.css" />
+<link rel="stylesheet" href="assets/css/responsive.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2304060c'/%3E%3Cpath d='M14 18h36v7H36v23h-8V25H14z' fill='%2335f0ff'/%3E%3Ccircle cx='46' cy='44' r='5' fill='%23ffc23a'/%3E%3C/svg%3E" />
+</head>
+<body class="is-loading">
+
+<!-- ═══════════════ BOOT / PRELOADER ═══════════════ -->
+<div class="boot" id="boot" role="status" aria-live="polite" aria-label="Loading experience">
+  <div class="boot__grid" aria-hidden="true"></div>
+  <div class="boot__inner">
+    <div class="boot__ring" aria-hidden="true">
+      <svg viewBox="0 0 220 220">
+        <defs>
+          <linearGradient id="bootGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#35f0ff" /><stop offset="55%" stop-color="#7b5cff" /><stop offset="100%" stop-color="#ffc23a" />
+          </linearGradient>
+        </defs>
+        <circle class="boot__track" cx="110" cy="110" r="96" />
+        <circle class="boot__prog" id="bootProg" cx="110" cy="110" r="96" />
+        <circle class="boot__tick" cx="110" cy="110" r="78" />
+      </svg>
+      <div class="boot__pct"><span id="bootPct">00</span><i>%</i></div>
+    </div>
+    <div class="boot__logo">
+      <span class="boot__logo-a">CYBORG</span><span class="boot__logo-b">ASCENSION</span>
+    </div>
+    <ul class="boot__log" id="bootLog" aria-hidden="true"></ul>
+    <button class="boot__enter" id="bootEnter" type="button" hidden>
+      <span class="boot__enter-glow" aria-hidden="true"></span>
+      <span class="boot__enter-txt">ENTER THE AETHER</span>
+    </button>
+  </div>
+  <div class="boot__scan" aria-hidden="true"></div>
+</div>
+
+<!-- ═══════════════ GLOBAL FX LAYERS ═══════════════ -->
+<canvas id="aether" class="fx-aether" aria-hidden="true"></canvas>
+<div class="fx-grain" aria-hidden="true"></div>
+<div class="fx-vignette" aria-hidden="true"></div>
+<div class="fx-scanlines" aria-hidden="true"></div>
+<div class="fx-aberration" id="fxAberration" aria-hidden="true"></div>
+
+<!-- custom cursor -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring">
+    <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" /></svg>
+    <span class="cursor__bracket cursor__bracket--tl"></span>
+    <span class="cursor__bracket cursor__bracket--tr"></span>
+    <span class="cursor__bracket cursor__bracket--bl"></span>
+    <span class="cursor__bracket cursor__bracket--br"></span>
+  </div>
+  <div class="cursor__label" id="cursorLabel"></div>
+</div>
+
+<!-- scroll progress -->
+<div class="scrollbar" aria-hidden="true"><i id="scrollFill"></i></div>
+
+<a class="skip-link" href="#overview">Skip to content</a>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header class="hdr" id="hdr">
+  <a class="hdr__brand" href="#top" data-cursor="HOME" aria-label="Cyborg Ascension — home">
+    <svg class="hdr__mark" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M10 14h44v9H38v31h-10V23H10z" />
+      <circle cx="49" cy="46" r="6" class="hdr__mark-eye" />
+      <path d="M4 58h20" class="hdr__mark-line" />
+    </svg>
+    <span class="hdr__word"><b>TECHFEST</b><i>30<sup>TH</sup> EDITION</i></span>
+  </a>
+
+  <nav class="hdr__nav" aria-label="Primary">
+    <div class="hdr__nav-plate" aria-hidden="true"></div>
+    <a href="#overview" data-nav data-cursor="SCAN"><span>OVERVIEW</span></a>
+    <a href="#protocols" data-nav data-cursor="SCAN"><span>PROTOCOLS</span><em class="hdr__tag">NEW</em></a>
+    <a href="#core" data-nav data-cursor="SCAN"><span>THE CORE</span></a>
+    <a href="#timeline" data-nav data-cursor="SCAN"><span>TIMELINE</span></a>
+    <a href="#uplink" data-nav data-cursor="SCAN"><span>UPLINK</span></a>
+  </nav>
+
+  <div class="hdr__right">
+    <button class="hdr__sound" id="soundBtn" type="button" aria-pressed="false" aria-label="Toggle ambient audio" data-cursor="AUDIO">
+      <span class="eq"><i></i><i></i><i></i><i></i></span>
+    </button>
+    <a class="btn btn--sm hdr__cta" href="#uplink" data-magnetic data-cursor="JOIN">
+      <span>JOIN NOW</span>
+    </a>
+    <button class="hdr__burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer__bg" aria-hidden="true"></div>
+  <nav class="drawer__nav" aria-label="Mobile">
+    <a href="#overview" data-nav><i>01</i>OVERVIEW</a>
+    <a href="#protocols" data-nav><i>02</i>PROTOCOLS</a>
+    <a href="#core" data-nav><i>03</i>THE CORE</a>
+    <a href="#timeline" data-nav><i>04</i>TIMELINE</a>
+    <a href="#archive" data-nav><i>05</i>ARCHIVE</a>
+    <a href="#uplink" data-nav><i>06</i>UPLINK</a>
+  </nav>
+  <div class="drawer__foot">
+    <span>IIT BOMBAY · 16–18 DEC</span>
+    <span class="drawer__clock" id="drawerClock">--:--:--</span>
+  </div>
+</div>
+
+<!-- ═══════════════ SIDE RAILS ═══════════════ -->
+<aside class="rail rail--left" aria-label="Section navigation">
+  <ul class="rail__list" id="railDots">
+    <li><a href="#top"       data-rail="top"       data-cursor="TOP"><span class="rail__dot"></span><span class="rail__txt">HOME</span></a></li>
+    <li><a href="#overview"  data-rail="overview"  data-cursor="GO"><span class="rail__dot"></span><span class="rail__txt">OVERVIEW</span></a></li>
+    <li><a href="#protocols" data-rail="protocols" data-cursor="GO"><span class="rail__dot"></span><span class="rail__txt">PROTOCOLS</span></a></li>
+    <li><a href="#core"      data-rail="core"      data-cursor="GO"><span class="rail__dot"></span><span class="rail__txt">CORE</span></a></li>
+    <li><a href="#timeline"  data-rail="timeline"  data-cursor="GO"><span class="rail__dot"></span><span class="rail__txt">TIMELINE</span></a></li>
+    <li><a href="#archive"   data-rail="archive"   data-cursor="GO"><span class="rail__dot"></span><span class="rail__txt">ARCHIVE</span></a></li>
+    <li><a href="#uplink"    data-rail="uplink"    data-cursor="GO"><span class="rail__dot"></span><span class="rail__txt">UPLINK</span></a></li>
+  </ul>
+</aside>
+
+<aside class="rail rail--right" aria-label="Social links">
+  <ul class="social">
+    <li><a href="https://instagram.com/techfest_iitbombay" target="_blank" rel="noopener" aria-label="Instagram" data-cursor="IG"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a></li>
+    <li><a href="https://x.com/techfest_iitb" target="_blank" rel="noopener" aria-label="X" data-cursor="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a></li>
+    <li><a href="https://linkedin.com/company/techfest-iit-bombay" target="_blank" rel="noopener" aria-label="LinkedIn" data-cursor="IN"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.5V17M7.5 7.6v.1M11.5 17v-3.6a2.1 2.1 0 014.2 0V17"/></svg></a></li>
+    <li><a href="https://facebook.com/techfest" target="_blank" rel="noopener" aria-label="Facebook" data-cursor="FB"><svg viewBox="0 0 24 24"><path d="M14.5 8.5H17M14.5 21V9.8A2.3 2.3 0 0116.8 7.5H17"/><path d="M11 12.5h5.5"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg></a></li>
+    <li><a href="https://youtube.com/@techfestiitbombay" target="_blank" rel="noopener" aria-label="YouTube" data-cursor="YT"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z"/></svg></a></li>
+    <li><a href="https://discord.gg/techfest" target="_blank" rel="noopener" aria-label="Discord" data-cursor="DC"><svg viewBox="0 0 24 24"><path d="M8 6.5c2.7-1 5.3-1 8 0M8 17.5c2.7 1 5.3 1 8 0"/><path d="M8 6.5C5.5 8 4.5 11 4.5 14.5c0 0 1.5 2 3.5 2.5l1-2M16 6.5c2.5 1.5 3.5 4.5 3.5 8 0 0-1.5 2-3.5 2.5l-1-2"/><circle cx="9.5" cy="12.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="14.5" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></a></li>
+  </ul>
+  <span class="rail__spine" aria-hidden="true"></span>
+</aside>
+
+<main id="top">
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="hero">
+  <canvas class="hero__core" id="heroCore" aria-hidden="true"></canvas>
+
+  <div class="hero__orbits" aria-hidden="true">
+    <span class="orb orb--1"></span><span class="orb orb--2"></span><span class="orb orb--3"></span>
+  </div>
+
+  <div class="hero__inner" data-parallax-scene>
+    <p class="hero__eyebrow" data-reveal data-parallax="0.18">
+      <span class="tick"></span>IIT BOMBAY&rsquo;S TECHFEST<span class="sep">//</span>ASIA&rsquo;S LARGEST SCIENCE &amp; TECHNOLOGY FESTIVAL
+    </p>
+
+    <h1 class="hero__title" data-parallax="0.08">
+      <span class="hero__line">
+        <span class="glitch" data-txt="CYBORG" data-reveal-chars>CYBORG</span>
+      </span>
+      <span class="hero__line hero__line--alt">
+        <span class="glitch glitch--gold" data-txt="ASCENSION" data-reveal-chars>ASCENSION</span>
+      </span>
+    </h1>
+
+    <p class="hero__sub" data-reveal data-parallax="0.24">
+      An Aetherial Renaissance — where flesh remembers and circuitry dreams.<br />
+      <b>16&ndash;18 DECEMBER</b> &middot; 30<sup>TH</sup> EDITION &middot; POWAI, MUMBAI
+    </p>
+
+    <div class="hero__actions" data-reveal data-parallax="0.3">
+      <a class="btn btn--primary" href="#uplink" data-magnetic data-cursor="INITIATE">
+        <span class="btn__shine" aria-hidden="true"></span>
+        <span class="btn__label">INITIATE UPLINK</span>
+        <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn--ghost" href="#protocols" data-magnetic data-cursor="EXPLORE">
+        <span class="btn__label">VIEW PROTOCOLS</span>
+      </a>
+    </div>
+
+    <dl class="hero__stats" data-reveal>
+      <div><dt data-count="30" data-suffix="TH">0</dt><dd>EDITION</dd></div>
+      <div><dt data-count="175" data-suffix="K+">0</dt><dd>FOOTFALL</dd></div>
+      <div><dt data-count="42" data-suffix="+">0</dt><dd>COUNTRIES</dd></div>
+      <div><dt data-count="1.2" data-suffix="CR" data-decimals="1">0</dt><dd>PRIZE POOL</dd></div>
+    </dl>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span>SCROLL</span><i></i>
+  </div>
+
+  <div class="hero__hud" aria-hidden="true">
+    <div class="hud__corner hud__corner--tl"></div>
+    <div class="hud__corner hud__corner--tr"></div>
+    <div class="hud__corner hud__corner--bl"></div>
+    <div class="hud__corner hud__corner--br"></div>
+    <div class="hud__readout">
+      <span>SYS</span><b id="hudSys">NOMINAL</b>
+      <span>LAT</span><b id="hudLat">19.1334&deg;N</b>
+      <span>SYNC</span><b id="hudSync">100%</b>
+      <span>T&minus;</span><b id="hudClock">--:--:--</b>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MARQUEE ═══════════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="marqueeTrack"></div>
+</div>
+
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<section class="sec sec--overview" id="overview">
+  <div class="sec__head" data-reveal>
+    <span class="sec__idx">01</span>
+    <h2 class="sec__title"><span data-reveal-chars>SYSTEM OVERVIEW</span></h2>
+    <p class="sec__lede">Three gateways. One consciousness. Choose where your signal enters the lattice.</p>
+  </div>
+
+  <div class="panels">
+    <article class="panel" data-reveal data-tilt>
+      <span class="panel__frame" aria-hidden="true"></span>
+      <div class="panel__body">
+        <span class="panel__sigil" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 4l17 10v20L24 44 7 34V14z"/><path d="M24 14l9 5v10l-9 5-9-5V19z"/><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <h3>CA PROGRAM</h3>
+        <p>Become a Campus Ambassador for Techfest. Represent the machine-soul at your college, unlock exclusive perks, certificates and a direct line into the core.</p>
+        <ul class="panel__list">
+          <li>Exclusive merch &amp; certification</li>
+          <li>Priority access to all events</li>
+          <li>Leaderboard &amp; cash rewards</li>
+        </ul>
+        <a class="btn btn--gold btn--block" href="#uplink" data-magnetic data-cursor="JOIN"><span class="btn__label">JOIN NOW</span></a>
+      </div>
+    </article>
+
+    <article class="panel panel--feature" data-reveal data-tilt>
+      <span class="panel__frame" aria-hidden="true"></span>
+      <div class="panel__body">
+        <span class="panel__sigil panel__sigil--lg" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9"/><path d="M24 6v12M24 30v12M6 24h12M30 24h12"/></svg>
+        </span>
+        <h3>ABOUT TECHFEST</h3>
+        <p>Welcome to the official nexus of the 30<sup>th</sup> edition of Techfest — Asia&rsquo;s largest science and technology festival, staged at IIT Bombay since 1998.</p>
+        <div class="panel__chips">
+          <a class="chip" href="#protocols" data-cursor="OPEN"><b>WORKSHOPS</b><i>18 tracks</i></a>
+          <a class="chip" href="#protocols" data-cursor="OPEN"><b>COMPETITIONS</b><i>60+ events</i></a>
+          <a class="chip" href="#core" data-cursor="OPEN"><b>HACKATHON</b><i>36 hours</i></a>
+          <a class="chip" href="#archive" data-cursor="OPEN"><b>LECTURES</b><i>Nobel &amp; beyond</i></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="panel" data-reveal data-tilt>
+      <span class="panel__frame" aria-hidden="true"></span>
+      <div class="panel__body">
+        <span class="panel__sigil" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M8 34l8-14 7 9 5-8 12 13z"/><circle cx="34" cy="13" r="4"/><rect x="5" y="8" width="38" height="32" rx="4"/></svg>
+        </span>
+        <h3>MORE EVENTS</h3>
+        <p>Robotics leagues, aero sprints, autonomous rovers, AI arenas and the Ignite speaker series. The lattice keeps expanding.</p>
+        <ul class="panel__list">
+          <li>Robowars &amp; Meshmerize</li>
+          <li>Ignite &amp; Exhibitions</li>
+          <li>International Rounds</li>
+        </ul>
+        <a class="btn btn--ghost btn--block" href="#timeline" data-magnetic data-cursor="VIEW"><span class="btn__label">SEE TIMELINE</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════ PROTOCOLS ═══════════════ -->
+<section class="sec sec--protocols" id="protocols">
+  <div class="sec__head" data-reveal>
+    <span class="sec__idx">02</span>
+    <h2 class="sec__title"><span data-reveal-chars>AUGMENT PROTOCOLS</span></h2>
+    <p class="sec__lede">Six subsystems grafted onto the human frame. Hover to energise the circuitry.</p>
+  </div>
+
+  <div class="bento">
+    <article class="cardx cardx--wide" data-reveal data-tilt data-cursor="OPEN">
+      <span class="cardx__scan" aria-hidden="true"></span>
+      <span class="cardx__corners" aria-hidden="true"></span>
+      <div class="cardx__num">P/01</div>
+      <h3 class="cardx__title">NEURAL LACE</h3>
+      <p class="cardx__txt">A mesh of superconducting filaments woven through the cortex. Thought becomes bandwidth; intuition becomes an API. This is where the festival speaks directly to you.</p>
+      <div class="cardx__meter" data-meter="94"><i></i><b>94%</b></div>
+    </article>
+
+    <article class="cardx" data-reveal data-tilt data-cursor="OPEN">
+      <span class="cardx__scan" aria-hidden="true"></span>
+      <span class="cardx__corners" aria-hidden="true"></span>
+      <div class="cardx__num">P/02</div>
+      <h3 class="cardx__title">OPTIC ARRAY</h3>
+      <p class="cardx__txt">Twelve-spectrum vision. See the heat of an idea before it is spoken.</p>
+      <div class="cardx__meter" data-meter="78"><i></i><b>78%</b></div>
+    </article>
+
+    <article class="cardx" data-reveal data-tilt data-cursor="OPEN">
+      <span class="cardx__scan" aria-hidden="true"></span>
+      <span class="cardx__corners" aria-hidden="true"></span>
+      <div class="cardx__num">P/03</div>
+      <h3 class="cardx__title">EXO-SPINE</h3>
+      <p class="cardx__txt">Titanium vertebrae with servo assist. Carry the weight of ambition.</p>
+      <div class="cardx__meter" data-meter="86"><i></i><b>86%</b></div>
+    </article>
+
+    <article class="cardx" data-reveal data-tilt data-cursor="OPEN">
+      <span class="cardx__scan" aria-hidden="true"></span>
+      <span class="cardx__corners" aria-hidden="true"></span>
+      <div class="cardx__num">P/04</div>
+      <h3 class="cardx__title">PLASMA HEART</h3>
+      <p class="cardx__txt">A contained star, beating. Eighty years of charge in a fist-sized cage.</p>
+      <div class="cardx__meter" data-meter="99"><i></i><b>99%</b></div>
+    </article>
+
+    <article class="cardx cardx--tall" data-reveal data-tilt data-cursor="OPEN">
+      <span class="cardx__scan" aria-hidden="true"></span>
+      <span class="cardx__corners" aria-hidden="true"></span>
+      <div class="cardx__num">P/05</div>
+      <h3 class="cardx__title">AETHER DRIVE</h3>
+      <p class="cardx__txt">The impossible subsystem — a resonance engine tuned to the field between worlds. It is what lets a festival feel like a myth and a myth feel like an engineering spec.</p>
+      <ul class="cardx__specs">
+        <li><span>CORE</span><b>Quantum-Lattice</b></li>
+        <li><span>OUTPUT</span><b>12.8 TJ</b></li>
+        <li><span>STATE</span><b class="pulse">RESONANT</b></li>
+      </ul>
+      <div class="cardx__meter" data-meter="100"><i></i><b>100%</b></div>
+    </article>
+
+    <article class="cardx" data-reveal data-tilt data-cursor="OPEN">
+      <span class="cardx__scan" aria-hidden="true"></span>
+      <span class="cardx__corners" aria-hidden="true"></span>
+      <div class="cardx__num">P/06</div>
+      <h3 class="cardx__title">DERMAL WEAVE</h3>
+      <p class="cardx__txt">Photo-reactive skin. It blushes in ultraviolet when you are close to a breakthrough.</p>
+      <div class="cardx__meter" data-meter="71"><i></i><b>71%</b></div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════ THE CORE ═══════════════ -->
+<section class="sec sec--core" id="core">
+  <div class="sec__head" data-reveal>
+    <span class="sec__idx">03</span>
+    <h2 class="sec__title"><span data-reveal-chars>THE CORE</span></h2>
+    <p class="sec__lede">An exploded schematic of the ascended frame. Select a node to interrogate the system.</p>
+  </div>
+
+  <div class="core">
+    <div class="core__stage" data-reveal>
+      <canvas id="coreCanvas" aria-hidden="true"></canvas>
+      <div class="core__ring core__ring--a" aria-hidden="true"></div>
+      <div class="core__ring core__ring--b" aria-hidden="true"></div>
+      <div class="core__ring core__ring--c" aria-hidden="true"></div>
+      <div class="core__hotspots" id="coreHotspots">
+        <button class="hot" type="button" data-node="0" style="--x:50%;--y:14%" aria-label="Cranial node" data-cursor="SCAN"><i></i></button>
+        <button class="hot" type="button" data-node="1" style="--x:22%;--y:40%" aria-label="Left shoulder node" data-cursor="SCAN"><i></i></button>
+        <button class="hot" type="button" data-node="2" style="--x:78%;--y:40%" aria-label="Right shoulder node" data-cursor="SCAN"><i></i></button>
+        <button class="hot" type="button" data-node="3" style="--x:50%;--y:52%" aria-label="Thoracic core" data-cursor="SCAN"><i></i></button>
+        <button class="hot" type="button" data-node="4" style="--x:34%;--y:80%" aria-label="Locomotion node" data-cursor="SCAN"><i></i></button>
+      </div>
+      <span class="core__glow" aria-hidden="true"></span>
+    </div>
+
+    <div class="core__panel" data-reveal>
+      <div class="core__tabs" role="tablist" aria-label="Core subsystems">
+        <button role="tab" class="is-on" data-tab="0" aria-selected="true" data-cursor="SELECT">CRANIAL</button>
+        <button role="tab" data-tab="1" aria-selected="false" data-cursor="SELECT">SINISTRAL</button>
+        <button role="tab" data-tab="2" aria-selected="false" data-cursor="SELECT">DEXTRAL</button>
+        <button role="tab" data-tab="3" aria-selected="false" data-cursor="SELECT">THORAX</button>
+        <button role="tab" data-tab="4" aria-selected="false" data-cursor="SELECT">LOCOMOTIVE</button>
+      </div>
+      <div class="core__readout" id="coreReadout" role="tabpanel" aria-live="polite">
+        <!-- injected -->
+      </div>
+      <div class="core__bars" id="coreBars"><!-- injected --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TIMELINE ═══════════════ -->
+<section class="sec sec--timeline" id="timeline">
+  <div class="sec__head" data-reveal>
+    <span class="sec__idx">04</span>
+    <h2 class="sec__title"><span data-reveal-chars>ASCENSION TIMELINE</span></h2>
+    <p class="sec__lede">Five phases from first contact to full synthesis.</p>
+  </div>
+
+  <ol class="tl">
+    <span class="tl__spine" aria-hidden="true"><i id="tlFill"></i></span>
+
+    <li class="tl__item" data-reveal>
+      <span class="tl__node" aria-hidden="true"></span>
+      <div class="tl__card">
+        <span class="tl__date">PHASE 01 &middot; OCT</span>
+        <h3>REGISTRATION OPENS</h3>
+        <p>Signal broadcast. Campus Ambassador applications go live across 2,000+ institutions. Early-bird uplinks receive priority bandwidth.</p>
+        <div class="tl__tags"><span>CA PROGRAM</span><span>EARLY BIRD</span></div>
+      </div>
+    </li>
+
+    <li class="tl__item" data-reveal>
+      <span class="tl__node" aria-hidden="true"></span>
+      <div class="tl__card">
+        <span class="tl__date">PHASE 02 &middot; NOV</span>
+        <h3>CALIBRATION ROUNDS</h3>
+        <p>Online prelims for every competition track. Submit your build, your model, your proof. The lattice scores in real time.</p>
+        <div class="tl__tags"><span>PRELIMS</span><span>ONLINE</span></div>
+      </div>
+    </li>
+
+    <li class="tl__item" data-reveal>
+      <span class="tl__node" aria-hidden="true"></span>
+      <div class="tl__card">
+        <span class="tl__date">PHASE 03 &middot; 16 DEC</span>
+        <h3>THE AWAKENING</h3>
+        <p>Gates open at Powai. Opening ceremony, Ignite keynote, and the first ignition of the Aether Drive on the main arena stage.</p>
+        <div class="tl__tags"><span>DAY 1</span><span>IGNITE</span></div>
+      </div>
+    </li>
+
+    <li class="tl__item" data-reveal>
+      <span class="tl__node" aria-hidden="true"></span>
+      <div class="tl__card">
+        <span class="tl__date">PHASE 04 &middot; 17 DEC</span>
+        <h3>FULL SPECTRUM</h3>
+        <p>Robowars finals, 36-hour hackathon crescendo, international exhibition pavilion and the night of a thousand drones.</p>
+        <div class="tl__tags"><span>DAY 2</span><span>ROBOWARS</span></div>
+      </div>
+    </li>
+
+    <li class="tl__item" data-reveal>
+      <span class="tl__node" aria-hidden="true"></span>
+      <div class="tl__card">
+        <span class="tl__date">PHASE 05 &middot; 18 DEC</span>
+        <h3>SYNTHESIS</h3>
+        <p>Grand finale, prize distribution, and the closing resonance. You leave with different hardware than you arrived with.</p>
+        <div class="tl__tags"><span>DAY 3</span><span>FINALE</span></div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ═══════════════ ARCHIVE ═══════════════ -->
+<section class="sec sec--archive" id="archive">
+  <div class="sec__head" data-reveal>
+    <span class="sec__idx">05</span>
+    <h2 class="sec__title"><span data-reveal-chars>FIELD ARCHIVE</span></h2>
+    <p class="sec__lede">Transmissions recovered from previous ascensions.</p>
+  </div>
+
+  <div class="quotes" id="quotes" data-reveal>
+    <button class="quotes__nav quotes__nav--prev" type="button" aria-label="Previous" data-cursor="PREV"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div class="quotes__viewport"><div class="quotes__track" id="quotesTrack"></div></div>
+    <button class="quotes__nav quotes__nav--next" type="button" aria-label="Next" data-cursor="NEXT"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="quotes__dots" id="quotesDots"></div>
+  </div>
+
+  <div class="faq" data-reveal>
+    <h3 class="faq__h">DIAGNOSTIC LOG</h3>
+    <div class="faq__list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ UPLINK / CTA ═══════════════ -->
+<section class="sec sec--uplink" id="uplink">
+  <div class="uplink">
+    <div class="uplink__glow" aria-hidden="true"></div>
+
+    <div class="uplink__copy" data-reveal>
+      <span class="sec__idx">06</span>
+      <h2 class="uplink__title"><span class="glitch glitch--gold" data-txt="BECOME THE SIGNAL" data-reveal-chars>BECOME THE SIGNAL</span></h2>
+      <p class="uplink__lede">Apply to the Campus Ambassador Program. Carry the Techfest frequency to your campus, build your network, and earn your place in the core.</p>
+      <ul class="uplink__perks">
+        <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Official certificate &amp; letter of recommendation</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Exclusive merchandise drop</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Free accommodation for top ambassadors</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Cash rewards &amp; internship referrals</li>
+      </ul>
+    </div>
+
+    <form class="uplink__form" id="uplinkForm" data-reveal novalidate>
+      <div class="uplink__form-head">
+        <span class="dotrow" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>UPLINK_REQUEST.form</span>
+      </div>
+
+      <label class="field">
+        <span class="field__label">DESIGNATION</span>
+        <input type="text" name="name" required placeholder="Your full name" autocomplete="name" data-cursor="TYPE" />
+        <span class="field__line" aria-hidden="true"></span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">COMMS CHANNEL</span>
+        <input type="email" name="email" required placeholder="you@college.edu" autocomplete="email" data-cursor="TYPE" />
+        <span class="field__line" aria-hidden="true"></span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">HOME NODE</span>
+        <input type="text" name="college" required placeholder="Institution name" autocomplete="organization" data-cursor="TYPE" />
+        <span class="field__line" aria-hidden="true"></span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">PREFERRED PROTOCOL</span>
+        <select name="track" data-cursor="PICK">
+          <option>Campus Ambassador</option>
+          <option>Competitions</option>
+          <option>Workshops</option>
+          <option>Hackathon</option>
+          <option>Exhibitions</option>
+        </select>
+        <span class="field__line" aria-hidden="true"></span>
+      </label>
+
+      <button class="btn btn--primary btn--block" type="submit" data-magnetic data-cursor="SEND">
+        <span class="btn__shine" aria-hidden="true"></span>
+        <span class="btn__label" id="submitLabel">TRANSMIT APPLICATION</span>
+      </button>
+
+      <p class="uplink__note" id="formNote" role="status" aria-live="polite">Encrypted end-to-end. No signal leaves the lattice.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="ftr">
+  <div class="ftr__top">
+    <div class="ftr__brand">
+      <svg class="hdr__mark" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M10 14h44v9H38v31h-10V23H10z" /><circle cx="49" cy="46" r="6" class="hdr__mark-eye" /><path d="M4 58h20" class="hdr__mark-line" />
+      </svg>
+      <p>IIT Bombay&rsquo;s Techfest &mdash; Asia&rsquo;s largest science and technology festival. 30<sup>th</sup> edition, an aetherial renaissance.</p>
+    </div>
+    <nav class="ftr__cols" aria-label="Footer">
+      <div><h4>NAVIGATE</h4><a href="#overview">Overview</a><a href="#protocols">Protocols</a><a href="#core">The Core</a><a href="#timeline">Timeline</a></div>
+      <div><h4>PROGRAMS</h4><a href="#uplink">CA Program</a><a href="#protocols">Competitions</a><a href="#protocols">Workshops</a><a href="#archive">Ignite</a></div>
+      <div><h4>CONNECT</h4><a href="https://instagram.com/techfest_iitbombay" target="_blank" rel="noopener">Instagram</a><a href="https://linkedin.com/company/techfest-iit-bombay" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/techfest_iitb" target="_blank" rel="noopener">X / Twitter</a><a href="https://discord.gg/techfest" target="_blank" rel="noopener">Discord</a></div>
+    </nav>
+  </div>
+
+  <div class="ftr__word" aria-hidden="true">ASCENSION</div>
+
+  <div class="ftr__bar">
+    <span>&copy; <span id="yr">2026</span> TECHFEST &middot; IIT BOMBAY</span>
+    <span class="ftr__sig">DESIGNED &amp; BUILT BY AKSHAT</span>
+    <span class="ftr__status"><i></i>ALL SYSTEMS NOMINAL</span>
+  </div>
+</footer>
+
+<script src="assets/js/gl-aether.js" defer></script>
+<script src="assets/js/cyber-core.js" defer></script>
+<script src="assets/js/interactions.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
