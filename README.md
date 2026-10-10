@@ -5,7 +5,11 @@ Zero dependencies, zero build step — pure HTML, CSS and JavaScript.
 
 ## Live
 
-Open `index.html`, or serve the folder:
+**https://akshatinnovate-png.github.io/TechfestCA/**
+
+Deployed automatically by GitHub Actions (`.github/workflows/deploy-pages.yml`) on every push.
+
+To run locally, open `index.html` directly, or serve the folder:
 
 ```bash
 python3 -m http.server 8000
