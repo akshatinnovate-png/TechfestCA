@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#05060f" />
+<title>RE-ENTRY — A Parallax Descent</title>
+<meta name="description" content="Scroll from low orbit all the way down to the Techfest arena floor through six parallax layers of atmosphere." />
+<meta property="og:title" content="RE-ENTRY — A Parallax Descent" />
+<meta property="og:description" content="400 km to ground. Scroll down." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/app.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060f'/%3E%3Ccircle cx='32' cy='40' r='18' fill='%23ffb347'/%3E%3Cpath d='M8 40h48' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+<!-- ─────────── sky: one continuous gradient behind everything ─────────── -->
+<div class="sky" id="sky" aria-hidden="true"></div>
+<div class="sun" id="sun" aria-hidden="true"></div>
+<div class="stars" id="stars" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ─────────── fixed HUD ─────────── -->
+<header class="hud">
+  <a class="hud__brand" href="../">
+    <span class="hud__dot" aria-hidden="true"></span>
+    <span><b>RE&middot;ENTRY</b><i>A PARALLAX DESCENT</i></span>
+  </a>
+  <div class="hud__alt" aria-hidden="true">
+    <span class="hud__altnum" id="altNum">400</span>
+    <span class="hud__altunit" id="altUnit">km</span>
+    <span class="hud__altlabel">ALTITUDE</span>
+  </div>
+</header>
+
+<nav class="dots" id="dots" aria-label="Jump to layer"></nav>
+
+<div class="tape" aria-hidden="true"><i id="tapeFill"></i></div>
+
+<div class="cue" id="cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+
+<main>
+
+<!-- ═══════════ 01 · ORBIT ═══════════ -->
+<section class="scene scene--orbit" data-name="ORBIT" data-alt="400 km">
+  <div class="stage">
+    <div class="lyr lyr--limb" data-speed="14" aria-hidden="true"></div>
+    <div class="lyr lyr--glow" data-speed="10" aria-hidden="true"></div>
+    <div class="lyr lyr--sat"  data-speed="-26" data-drift="12" aria-hidden="true">
+      <svg viewBox="0 0 220 120" class="sat" id="sat">
+        <g class="sat__wing"><rect x="2"   y="36" width="62" height="44" rx="3" /><path d="M2 48h62M2 60h62M2 72h62M20 36v44M42 36v44" /></g>
+        <g class="sat__wing"><rect x="156" y="36" width="62" height="44" rx="3" /><path d="M156 48h62M156 60h62M156 72h62M174 36v44M196 36v44" /></g>
+        <rect class="sat__body" x="78" y="30" width="64" height="56" rx="6" />
+        <path class="sat__mast" d="M64 58h14M142 58h14M110 30V8" />
+        <circle class="sat__dish" cx="110" cy="100" r="15" />
+        <circle class="sat__led" cx="110" cy="8" r="4" />
+      </svg>
+    </div>
+    <div class="copy copy--center" data-speed="-6">
+      <p class="eyebrow"><i></i>LAYER 01 &mdash; LOW EARTH ORBIT</p>
+      <h1 class="title">RE<span>&middot;</span>ENTRY</h1>
+      <p class="lede">Four hundred kilometres up, the signal leaves the array. Everything below is in the way.<br /><b>Scroll to fall.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 02 · MESOSPHERE ═══════════ -->
+<section class="scene scene--meso" data-name="MESOSPHERE" data-alt="80 km">
+  <div class="stage">
+    <div class="lyr lyr--aurora" data-speed="20" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="lyr lyr--shoot" id="shootLayer" data-speed="8" aria-hidden="true"></div>
+    <div class="lyr lyr--balloon" data-speed="-34" data-drift="-16" aria-hidden="true">
+      <svg viewBox="0 0 140 220" class="balloon">
+        <path class="balloon__skin" d="M70 6c34 0 58 26 58 58 0 34-30 62-58 92-28-30-58-58-58-92C12 32 36 6 70 6z" />
+        <path class="balloon__shine" d="M46 26c-12 10-18 24-18 38" />
+        <path class="balloon__line" d="M70 156v26" />
+        <rect class="balloon__box" x="56" y="182" width="28" height="22" rx="4" />
+      </svg>
+    </div>
+    <div class="copy copy--left" data-speed="-10">
+      <p class="eyebrow"><i></i>LAYER 02 &mdash; MESOSPHERE</p>
+      <h2 class="title title--sm">WHERE THINGS<br />BURN UP</h2>
+      <p class="lede">Eighty kilometres. Thin enough to see the curve, thick enough to catch fire. Most things that come this way do not arrive.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 03 · CLOUD DECK ═══════════ -->
+<section class="scene scene--cloud" data-name="CLOUD DECK" data-alt="10 km">
+  <div class="stage">
+    <div class="lyr lyr--cloudfar"  id="cloudFar"  data-speed="24" data-drift="-30" aria-hidden="true"></div>
+    <div class="lyr lyr--plane"     data-speed="-20" data-drift="70" aria-hidden="true">
+      <svg viewBox="0 0 200 60" class="plane">
+        <path class="plane__body" d="M8 32c22-7 52-12 84-12l34-14 8 2-14 14 36 2c10 1 18 4 24 8-6 4-14 7-24 8l-36 2 14 14-8 2-34-14c-32 0-62-5-84-12z" />
+      </svg>
+      <span class="plane__trail"></span>
+    </div>
+    <div class="lyr lyr--cloudmid"  id="cloudMid"  data-speed="-6" data-drift="48" aria-hidden="true"></div>
+    <div class="copy copy--right" data-speed="-14">
+      <p class="eyebrow"><i></i>LAYER 03 &mdash; CLOUD DECK</p>
+      <h2 class="title title--sm">TEN KILOMETRES<br />OF WEATHER</h2>
+      <p class="lede">The last soft thing before the ground. Three decks of cloud, each one moving at its own pace, none of them in a hurry.</p>
+    </div>
+    <div class="lyr lyr--cloudnear" id="cloudNear" data-speed="-40" data-drift="-64" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ═══════════ 04 · RIDGELINE ═══════════ -->
+<section class="scene scene--ridge" data-name="RIDGELINE" data-alt="2 km">
+  <div class="stage">
+    <div class="lyr lyr--birds" id="birds" data-speed="-16" data-drift="40" aria-hidden="true"></div>
+    <div class="lyr lyr--ridge5" data-speed="14" aria-hidden="true"></div>
+    <div class="lyr lyr--ridge4" data-speed="6"  aria-hidden="true"></div>
+    <div class="lyr lyr--mist"   data-speed="0"  aria-hidden="true"></div>
+    <div class="lyr lyr--ridge3" data-speed="-4" aria-hidden="true"></div>
+    <div class="copy copy--left copy--low" data-speed="-18">
+      <p class="eyebrow"><i></i>LAYER 04 &mdash; RIDGELINE</p>
+      <h2 class="title title--sm">TWO THOUSAND<br />METRES</h2>
+      <p class="lede">Five ridges, five speeds. The nearest one is tearing past; the furthest has barely noticed you.</p>
+    </div>
+    <div class="lyr lyr--ridge2" data-speed="-12" aria-hidden="true"></div>
+    <div class="lyr lyr--ridge1" data-speed="-22" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ═══════════ 05 · THE CITY ═══════════ -->
+<section class="scene scene--city" data-name="THE CITY" data-alt="200 m">
+  <div class="stage">
+    <div class="lyr lyr--skyfar"  id="skyFar"  data-speed="14" aria-hidden="true"></div>
+    <div class="lyr lyr--skymid"  id="skyMid"  data-speed="-4" aria-hidden="true"></div>
+    <div class="copy copy--center copy--up" data-speed="-10">
+      <p class="eyebrow"><i></i>LAYER 05 &mdash; THE CITY</p>
+      <h2 class="title title--sm">MUMBAI,<br />LIT FROM INSIDE</h2>
+      <p class="lede">Two hundred metres. Every window that blinks on is somebody still working at this hour. Some of them are building for December.</p>
+    </div>
+    <div class="lyr lyr--skynear" id="skyNear" data-speed="-30" aria-hidden="true"></div>
+    <div class="lyr lyr--rail"    data-speed="-44" aria-hidden="true">
+      <span class="train" id="train"></span>
+      <span class="railline"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 06 · GROUND ═══════════ -->
+<section class="scene scene--ground" data-name="ARENA" data-alt="0 m">
+  <div class="stage">
+    <div class="lyr lyr--floor" data-speed="-20" aria-hidden="true"></div>
+    <div class="lyr lyr--treeline" id="treeline" data-speed="-8" aria-hidden="true"></div>
+    <div class="lyr lyr--gate" data-speed="-24" aria-hidden="true">
+      <svg viewBox="0 0 900 320" class="gate" preserveAspectRatio="xMidYMax meet">
+        <path class="gate__arch" d="M120 320V150a330 330 0 0 1 660 0v170" />
+        <path class="gate__arch gate__arch--in" d="M190 320V160a260 260 0 0 1 520 0v160" />
+        <rect class="gate__pier" x="96"  y="140" width="48" height="180" rx="6" />
+        <rect class="gate__pier" x="756" y="140" width="48" height="180" rx="6" />
+        <g class="gate__flags">
+          <path d="M120 150V96l44 16-44 16" /><path d="M780 150V96l-44 16 44 16" />
+        </g>
+        <text class="gate__word" x="450" y="236" text-anchor="middle">TECHFEST</text>
+      </svg>
+    </div>
+    <div class="lyr lyr--crowd" id="crowd" data-speed="-16" aria-hidden="true"></div>
+    <div class="lyr lyr--flies" id="flies" data-speed="-26" aria-hidden="true"></div>
+    <div class="copy copy--center copy--ground" data-speed="-8">
+      <p class="eyebrow"><i></i>LAYER 06 &mdash; GROUND</p>
+      <h2 class="title title--sm">YOU LANDED</h2>
+      <p class="lede">Zero metres. 16&ndash;18 December, IIT Bombay. The rest of it happens here.</p>
+      <div class="cta">
+        <a class="btn btn--solid" href="../#uplink">JOIN THE PROGRAM</a>
+        <a class="btn" href="../3d/">SEE THE 3D BUILD</a>
+      </div>
+      <button class="replay" id="replay" type="button">&uarr; BACK TO ORBIT</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>

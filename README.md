@@ -22,6 +22,11 @@ and Three.js: five chapters, interactive event bodies, an instanced spire that a
 you scroll, and a particle wordmark finale.
 Live at **https://akshatinnovate-png.github.io/TechfestCA/3d/**
 
+**[`parallax/`](parallax/) — RE·ENTRY**, a parallax descent from low orbit to the ground:
+six layers of atmosphere moving at different speeds, all scenery generated in code, no
+image assets and no dependencies.
+Live at **https://akshatinnovate-png.github.io/TechfestCA/parallax/**
+
 ## What's in it
 
 - **Custom WebGL backdrop** — a hand-written GLSL fragment shader (domain-warped FBM aether clouds,
